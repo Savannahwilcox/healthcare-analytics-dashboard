@@ -4,6 +4,9 @@ data/processed/*.csv
 *.xlsx
 *.xls
 
+# EXCEPT: Allow CDC public datasets for portfolio
+!data/raw/cdc_*.xlsx
+
 # Tableau
 *.twb
 *.twbx
