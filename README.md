@@ -46,3 +46,19 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+
+## Interactive Dashboard
+
+**View the live dashboard:** [The State of Hospital Infection Prevention in America](https://public.tableau.com/app/profile/savannah.wilcox4290/viz/TheStateofHospitalInfectionPreventioninAmerica/Dashboard1)
+
+The Tableau Public dashboard includes:
+- US state map showing infection prevention performance by region
+- Comparison of 7 infection types (CLABSI, CAUTI, VAE, etc.)
+- Top 10 worst-performing states
+- Top 10 best-performing states
+
+**Key Findings:**
+- Connecticut leads with the best overall performance (0.62 score)
+- VAE (Ventilator-Associated Events) is the biggest challenge nationwide (1.20 avg)
+- Northeast performs best; West lags behind
+- Puerto Rico and North Dakota struggle most
