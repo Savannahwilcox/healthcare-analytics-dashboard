@@ -1,5 +1,7 @@
 # Healthcare-Associated Infections (HAI) Analysis Dashboard
 
+**Status:** Complete
+
 Analyzing CDC data on hospital-acquired infections to identify trends, benchmark performance, and highlight areas for improvement.
 
 ## Project Overview
@@ -17,36 +19,6 @@ CDC National Healthcare Safety Network (NHSN) - HAI Progress Reports
 - Infection types: CLABSI, CAUTI, CDI, MRSA, SSI, VAE
 - Coverage: U.S. acute care hospitals (national + state level)
 
-## Project Structure
-├── data/
-│ ├── raw/ # Original CDC data
-│ └── processed/ # Cleaned data for analysis
-├── notebooks/
-│ └── 01_data_exploration.ipynb
-├── src/
-│ └── utils.py
-├── dashboards/
-│ └── README.md # Tableau dashboard documentation
-├── outputs/
-│ └── visualizations/
-├── requirements.txt
-└── README.md
-## Next Steps
-
-- [ ] Download CDC HAI data
-- [ ] Exploratory data analysis
-- [ ] Data cleaning & preparation
-- [ ] Tableau dashboard development
-- [ ] Final dashboard deployment
-
-## Getting Started
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
 ## Interactive Dashboard
 
 **View the live dashboard:** [The State of Hospital Infection Prevention in America](https://public.tableau.com/app/profile/savannah.wilcox4290/viz/TheStateofHospitalInfectionPreventioninAmerica/Dashboard1)
@@ -62,3 +34,31 @@ The Tableau Public dashboard includes:
 - VAE (Ventilator-Associated Events) is the biggest challenge nationwide (1.20 avg)
 - Northeast performs best; West lags behind
 - Puerto Rico and North Dakota struggle most
+
+## Project Structure
+
+```
+├── data/
+│   ├── raw/            # Original CDC data
+│   └── processed/      # Cleaned data for analysis
+├── notebooks/
+│   └── 01_data_exploration.ipynb
+├── src/
+│   └── utils.py
+├── dashboards/
+│   └── README.md        # Tableau dashboard documentation
+├── outputs/
+│   └── visualizations/
+├── requirements.txt
+└── README.md
+```
+
+## Reproducing This Locally
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Then run the notebooks in `notebooks/` in order to reproduce the cleaning and exploration steps behind the dashboard.
