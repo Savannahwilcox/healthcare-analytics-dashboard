@@ -1,64 +1,46 @@
-# Healthcare-Associated Infections (HAI) Analysis Dashboard
+# Hospital-Acquired Infection (HAI) State Benchmarking
 
-**Status:** Complete
+Analysis of CDC National Healthcare Safety Network (NHSN) 2023 Standardized Infection Ratios (SIR), benchmarking all 50 states, D.C., and Puerto Rico across seven infection types.
 
-Analyzing CDC data on hospital-acquired infections to identify trends, benchmark performance, and highlight areas for improvement.
+## Data source
 
-## Project Overview
+CDC NHSN HAI Progress Report, "State SIR Comparison" tables (Tables 10a-10g): CLABSI, CAUTI, VAE, SSI following colon surgery, SSI following hysterectomy, MRSA, and CDI. SIR is risk-adjusted: 1.0 means a state matched the national baseline, above 1.0 is worse than expected, below 1.0 is better.
 
-This project examines national and state-level HAI data from the CDC to answer:
-- Which infections are most prevalent?
-- How have rates changed over time?
-- Which states perform best/worst?
-- What's the impact on patient safety?
+## Key findings
 
-## Data Source
+Connecticut has the best overall score (0.62 average across all seven infection types), followed by Wyoming (0.66), D.C. (0.66), and Delaware (0.67). Puerto Rico (1.17) and North Dakota (1.04) rank worst, with low scores across multiple infection types rather than one bad metric.
 
-CDC National Healthcare Safety Network (NHSN) - HAI Progress Reports
-- Source: https://www.cdc.gov/healthcare-associated-infections/php/data/index.html
-- Infection types: CLABSI, CAUTI, CDI, MRSA, SSI, VAE
-- Coverage: U.S. acute care hospitals (national + state level)
+VAE (ventilator-associated events) is the hardest infection to prevent nationally, averaging 1.20, the only infection type where the national average is above the expected baseline. SSI following hysterectomy is second hardest (1.10 average). CDI is the best-controlled infection nationally, averaging 0.45.
 
-## Interactive Dashboard
+The Northeast has the best regional average (0.78). The West has the worst (0.83). The South and Midwest are both slightly better than the national average.
 
-**View the live dashboard:** [The State of Hospital Infection Prevention in America](https://public.tableau.com/app/profile/savannah.wilcox4290/viz/TheStateofHospitalInfectionPreventioninAmerica/Dashboard1)
+## Methodology notes
 
-The Tableau Public dashboard includes:
-- US state map showing infection prevention performance by region
-- Comparison of 7 infection types (CLABSI, CAUTI, VAE, etc.)
-- Top 10 worst-performing states
-- Top 10 best-performing states
+D.C. appeared under two different spellings across CDC's tables ("D.C." in the CLABSI sheet, "D. C." in the SSI-colon-surgery sheet). Merging seven tables on `State` without normalizing this created two separate D.C. rows, each with only a partial set of infection scores. I normalized the spelling before merging so D.C.'s scores combine into one row (6 of 7 infection types reported; D.C. is one of the states that didn't report VAE that year).
 
-**Key Findings:**
-- Connecticut leads with the best overall performance (0.62 score)
-- VAE (Ventilator-Associated Events) is the biggest challenge nationwide (1.20 avg)
-- Northeast performs best; West lags behind
-- Puerto Rico and North Dakota struggle most
+"All US" is a national aggregate row in the raw CDC export, not a state or territory. Left in, it changes state-level rankings and gets grouped into "Other" along with D.C. and Puerto Rico, which lowers that region's average. I excluded it from every state-level and regional calculation.
 
-## Project Structure
+## Live Dashboard
 
-```
+[The State of Hospital Infection Prevention in America](https://public.tableau.com/app/profile/savannah.wilcox4290/viz/TheStateofHospitalInfectionPreventioninAmerica/Dashboard1) — US map by region, comparison across all 7 infection types, and top/bottom 10 state rankings.
+
+## Limitations
+
+- SIR is risk-adjusted for patient mix, but only for the factors CDC's model accounts for.
+- Not every state reports every infection type. Overall scores are averaged across whichever metrics a state reported.
+- 2023 is the most recent year with full state-level SIR comparisons published. This is a single-year snapshot, not a trend.
+
+## Tools
+
+Python, pandas, Jupyter · Tableau Public
+
+## Repository Structure
+
+```text
 ├── data/
-│   ├── raw/            # Original CDC data
-│   └── processed/      # Cleaned data for analysis
+│   └── raw/              # Original CDC NHSN export
 ├── notebooks/
 │   └── 01_data_exploration.ipynb
-├── src/
-│   └── utils.py
-├── dashboards/
-│   └── README.md        # Tableau dashboard documentation
-├── outputs/
-│   └── visualizations/
 ├── requirements.txt
 └── README.md
 ```
-
-## Reproducing This Locally
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-Then run the notebooks in `notebooks/` in order to reproduce the cleaning and exploration steps behind the dashboard.
